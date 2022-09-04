@@ -7,6 +7,12 @@ import Vuesax from "vuesax";
 
 import "vuesax/dist/vuesax.css";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+library.add(faArrowRightToBracket);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
 Vue.config.productionTip = false;
 
 Vue.use(firestorePlugin);
