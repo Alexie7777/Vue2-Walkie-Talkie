@@ -16,7 +16,7 @@
         border-radius: 20px;
         padding: 5rem;
         width: 30rem;
-        height: 30rem;
+        height: 35rem;
       "
     >
       <h2 style="position: relative; right: -0.6rem; top: -1.5rem">
@@ -79,7 +79,7 @@
 
           <vs-tooltip
             ><vs-button
-              style="padding: 2px"
+              style="display: flex; justify-content: flex-start"
               :loading="tmLoading"
               icon
               block
@@ -88,10 +88,33 @@
               @click="handleSignin()"
             >
               <font-awesome-icon icon="fa-solid fa-mask" />
-              <p style="padding-left: 5px">Sign In Anonymously</p>
+              <p style="margin-left: 5px">Sign In Anonymously</p>
             </vs-button>
             <template #tooltip> You may lose all your account data </template>
           </vs-tooltip>
+          <vs-button
+            style="display: flex; justify-content: flex-start"
+            :loading="ggLoading"
+            icon
+            block
+            dark
+            flat
+            @click="handleSigninWithGoogle()"
+          >
+            <font-awesome-icon icon="fa-brands fa-google" />
+            <p style="margin-left: 5px">Sign In with Google</p>
+          </vs-button>
+          <vs-button
+            :loading="ghLoading"
+            icon
+            block
+            dark
+            flat
+            @click="handleSigninWithGithub()"
+          >
+            <font-awesome-icon icon="fa-brands fa-github" />
+            <p style="margin-left: 5px">Sign In with Github</p>
+          </vs-button>
         </div>
       </div>
     </aside>
@@ -102,6 +125,8 @@
 import { Component, Vue } from "vue-property-decorator";
 import { auth } from "@/firebase";
 import { Color } from "@/types/color";
+import { ggProvider } from "@/firebase";
+import { ghProvider } from "@/firebase";
 
 @Component
 export default class Login extends Vue {
@@ -111,13 +136,42 @@ export default class Login extends Vue {
   stLoading = false;
   newUser = false;
   errorMess = "";
+  ggLoading = false;
   auth = auth;
+  ghLoading = false;
 
   // sign in Anonymously
   async handleSignin() {
     this.tmLoading = true;
-    await auth.signInAnonymously();
+    try {
+      await auth.signInAnonymously();
+    } catch (err) {
+      this.errorMess = err.message;
+      this.openNotification("top-left", "danger");
+    }
     this.tmLoading = false;
+  }
+
+  async handleSigninWithGoogle() {
+    this.ggLoading = true;
+    try {
+      await auth.signInWithPopup(ggProvider);
+    } catch (err) {
+      this.errorMess = err.message;
+      this.openNotification("top-left", "danger");
+    }
+    this.ggLoading = false;
+  }
+
+  async handleSigninWithGithub() {
+    this.ghLoading = true;
+    try {
+      await auth.signInWithPopup(ghProvider);
+    } catch (err) {
+      this.errorMess = err.message;
+      this.openNotification("top-left", "danger");
+    }
+    this.ghLoading = false;
   }
 
   openNotification(position = null, color: Color) {

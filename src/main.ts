@@ -18,9 +18,12 @@ import {
   faMicrophone,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 library.add(
   faArrowRightToBracket,
+  faGithub,
   faLeftLong,
+  faGoogle,
   faMicrophone,
   faMask,
   faPaperPlane,
