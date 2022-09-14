@@ -9,6 +9,14 @@
       background-color: gray;
     "
   >
+    <vs-tooltip border style="position: relative; left: 60px"
+      ><vs-button transparent @click="backToChatList"
+        ><font-awesome-icon
+          style="font-size: 20px; color: black"
+          icon="fa-solid fa-left-long"
+      /></vs-button>
+      <template #tooltip> Back To ChatList </template>
+    </vs-tooltip>
     <main
       style="
         display: flex;
@@ -159,6 +167,10 @@ export default {
       this.loading = false;
       this.newMessageText = "";
       this.newAudio = null;
+    },
+
+    backToChatList() {
+      this.$router.push({ name: "HomeView" });
     },
 
     async record() {

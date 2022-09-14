@@ -90,9 +90,7 @@
               <font-awesome-icon icon="fa-solid fa-mask" />
               <p style="padding-left: 5px">Sign In Anonymously</p>
             </vs-button>
-            <template #tooltip>
-              You may lose all your temporarly account data
-            </template>
+            <template #tooltip> You may lose all your account data </template>
           </vs-tooltip>
         </div>
       </div>

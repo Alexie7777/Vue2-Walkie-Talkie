@@ -13,12 +13,14 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faArrowRightToBracket,
   faCircleStop,
+  faLeftLong,
   faMask,
   faMicrophone,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faArrowRightToBracket,
+  faLeftLong,
   faMicrophone,
   faMask,
   faPaperPlane,

@@ -14,7 +14,25 @@
         Create New Chat Room
       </vs-button>
 
-      <vs-button style="margin: auto" @click=""> Join a Chat Room </vs-button>
+      <vs-button style="margin: auto" @click="active = !active">
+        Join a Chat Room
+      </vs-button>
+      <vs-dialog v-model="active">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+          "
+        >
+          <vs-input
+            v-model="roomID"
+            placeholder="Please enter the chat room ID "
+          ></vs-input>
+          <vs-button @click="joinChatRoom">Submit!</vs-button>
+        </div>
+      </vs-dialog>
     </div>
   </div>
 </template>
@@ -25,7 +43,9 @@ import { db } from "../firebase";
 export default {
   data() {
     return {
+      roomID: "",
       chats: [],
+      active: false,
     };
   },
   firestore() {
@@ -49,6 +69,11 @@ export default {
 
       console.log(newChat);
     },
+
+    joinChatRoom() {
+      this.$router.push({ name: "ChatsView", params: { id: this.roomID } });
+    },
+
     openNotification(position = null, color) {
       const noti = this.$vs.notification({
         position,
