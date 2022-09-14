@@ -6,11 +6,24 @@ import router from "@/router";
 import Vuesax from "vuesax";
 
 import "vuesax/dist/vuesax.css";
+import "@/style/index.less";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
-library.add(faArrowRightToBracket);
+import {
+  faArrowRightToBracket,
+  faCircleStop,
+  faMask,
+  faMicrophone,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(
+  faArrowRightToBracket,
+  faMicrophone,
+  faMask,
+  faPaperPlane,
+  faCircleStop,
+);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;

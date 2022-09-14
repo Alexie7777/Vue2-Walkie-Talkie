@@ -1,8 +1,31 @@
 <template>
   <User #user="{ user }">
-    <div v-if="user">
-      <UserProfile :user="user" />
-      <ChatList :uid="user.uid" />
+    <div
+      style="
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: gray;
+      "
+      v-if="user"
+    >
+      <div
+        style="
+          display: flex;
+          width: 30rem;
+          height: 30rem;
+          background-color: white;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+        "
+      >
+        <UserProfile :user="user" />
+        <ChatList :uid="user.uid" />
+      </div>
     </div>
     <Login v-else />
   </User>
@@ -23,4 +46,4 @@ import { Login, User, UserProfile, ChatList } from "@/components/";
 export default class HomeView extends Vue {}
 </script>
 
-<style scoped></style>
+<style lang="less"></style>
